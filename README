@@ -1,0 +1,12 @@
+Laravel 5.5
+
+Socialite -> Open Authentication -> Google
+
+For DataBase->
+		xampp config based on .env file:
+			Create Database named "CodeCell"
+			Servername "root"
+			Password ""
+			
+			
+			
