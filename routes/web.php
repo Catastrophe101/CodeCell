@@ -19,7 +19,7 @@ Route::get('/about', function () {
 });
 Route::get('/profile', function () {
     return view('profile');
-});
+})->name('profile');
 Route::post('/profile/submit', 'profiledetails@submit');
 
 Route::get('/test', function () {

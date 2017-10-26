@@ -51,7 +51,9 @@ class LoginController extends Controller
     public function handleProviderCallback()
     {
         $user = Socialite::driver('google')->user();
-        return view('resources\views\profile.blade.php');
+        //dd($user);
+        return redirect()->route('profile');
+
         // $user->token;
     }
 }
