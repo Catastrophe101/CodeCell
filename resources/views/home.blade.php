@@ -1,7 +1,5 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: ahuja
- * Date: 20-10-2017
- * Time: 12:30
- */
+@extends('layouts.app')
+@section('content')
+<h1>HOME</h1>
+<p> description</p>
+@endsection

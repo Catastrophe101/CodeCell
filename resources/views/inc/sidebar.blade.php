@@ -1,7 +1,5 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: ahuja
- * Date: 20-10-2017
- * Time: 12:49
- */
+@section('sidebar')
+<div class = "well">
+    <h3> Today's qoute</h3>
+    <p>"First,solve the problem. <br>Then,write the code"<br>-John Johnson</p>
+</div>
