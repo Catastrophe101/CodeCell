@@ -17,6 +17,11 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('about');
 });
+Route::get('/notices', function () {
+    return view('notices');
+});
+
+
 Route::get('/profile', function () {
     return view('profile');
 })->name('profile');
