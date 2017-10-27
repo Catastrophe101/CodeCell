@@ -1,8 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use App\User;
+use Illuminate\Database\ConnectionResolverInterface;
+use Illuminate\Validation\DatabasePresenceVerifier;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
+//use App\UserController;
+
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -51,7 +56,11 @@ class LoginController extends Controller
     public function handleProviderCallback()
     {
         $user = Socialite::driver('google')->user();
-        //dd($user);
+
+        $bug=new UserController();
+        $bug->store($user,$user->token);
+        //UserController::store($user,$user->id);
+
         return redirect()->route('profile');
 
         // $user->token;
