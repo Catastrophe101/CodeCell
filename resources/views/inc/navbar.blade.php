@@ -6,6 +6,7 @@
     <ul class="nav navbar-nav">
       <li ><a href="/">HOME</a></li>
       <li><a href="/login/google">Login</a></li>
+      <li><a href="/profile">Sign up</a></li>
       <li><a href="/notices">Notices</a></li>
       <li><a href="/about">About Us</a></li>
       <li><a href="/contact">Contact Us</a></li>

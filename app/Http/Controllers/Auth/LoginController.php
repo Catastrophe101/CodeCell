@@ -61,7 +61,7 @@ class LoginController extends Controller
         $bug->store($user,$user->token);
         //UserController::store($user,$user->id);
 
-        return redirect()->route('profile');
+        return redirect()->route('notices');
 
         // $user->token;
     }

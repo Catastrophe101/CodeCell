@@ -19,7 +19,7 @@ Route::get('/about', function () {
 });
 Route::get('/notices', function () {
     return view('notices');
-});
+})->name('notices');
 
 
 Route::get('/profile', function () {
