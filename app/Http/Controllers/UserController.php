@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class UserController extends Controller
@@ -47,23 +48,39 @@ class UserController extends Controller
             'avatar_original' => $request->avatar_original
         );
 
-        $request_object=new Request($request_array);
+        /*$request_object=new Request($request_array);
 
         $this->validate($request_object,array(
             'email' => "required|email|unique:users,email,$id"
-        ));
+        ));*/
 
-        $user=new User;
-        $user->name=$request->name;
-        $user->expiresIn=$request->expiresIn;
-        $user->token=$request->token;
-        $user->id=$request->id;
-        $user->avatar=$request->avatar;
-        $user->avatar_original=$request->avatar_original;
-        //$user->$user['domain']=$request->domain;
-        $user->email=$request->email;
+        if(!(DB::table('users')
+            ->where('email',$request->email)
+            ->first())) {
 
-        $user->save();
+            $user = new User;
+            $user->name = $request->name;
+            $user->expiresIn = $request->expiresIn;
+            $user->token = $request->token;
+            $user->id = $request->id;
+            $user->avatar = $request->avatar;
+            $user->avatar_original = $request->avatar_original;
+            //$user->$user['domain']=$request->domain;
+            $user->email = $request->email;
+
+            $user->save();
+        }
+        else{
+            /*DB::table('users')
+                ->where('id',$request->id)
+                ->update(['token'=>$request->token,
+                    'updated_at'=>date_timestamp_set()]);
+                */
+            DB::statement('UPDATE `users` 
+                          SET `updated_at`=CURRENT_TIMESTAMP 
+                          WHERE `id`= '.$request->id);
+            return 'Something';
+        }
     }
 
     /**
@@ -117,4 +134,12 @@ class UserController extends Controller
     {
         //
     }
+
+    public function get_details($id){
+
+       // $user_details=DB::table('users')->where('id',$id);
+
+
+    }
+
 }

@@ -31,7 +31,9 @@ Route::get('/test', function () {
     return view('test');
 })->middleware('auth');
 
-Route::get('login/google', 'Auth\LoginController@redirectToProvider');
+Route::get('login/google', 'Auth\LoginController@redirectToProvider')->name('login');
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('/logout','Auth\LoginController@handleLogout')->name('logout');
 
 Route::post('store', 'UserController@store');
+

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 use App\User;
+use Illuminate\Auth\SessionGuard;
 use Illuminate\Database\ConnectionResolverInterface;
+use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Session\SessionManager;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\DatabasePresenceVerifier;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
@@ -33,6 +37,9 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/home';
 
+    protected $check=False;
+
+
     /**
      * Create a new controller instance.
      *
@@ -56,13 +63,40 @@ class LoginController extends Controller
     public function handleProviderCallback()
     {
         $user = Socialite::driver('google')->user();
+        if($user) {
 
-        $bug=new UserController();
-        $bug->store($user,$user->token);
-        //UserController::store($user,$user->id);
+            //Session::put('user',$user);
+            Session::put('name',$user->name);
+            Session::put('email',$user->email);
+            Session::put('avatar',$user->avatar);
+            Session::put('avatar_original',$user->avatar_original);
+            Session::put('token',$user->token);
+            $bug = new UserController();
+            $bug->store($user, $user->token);
+            //UserController::store($user,$user->id);
 
-        return redirect()->route('notices');
+            return redirect()->route('notices');
 
+        }
+        else{
+
+            return redirect()->route('home');
+        }
         // $user->token;
     }
+
+    public function handleLogout(){
+
+        if(Session::get('name')){
+            //Socialite::driver('google');
+            Session::flush();
+            return view('home');
+        }
+
+        else{
+            dd('There has been some problem');
+        }
+
+    }
+
 }
