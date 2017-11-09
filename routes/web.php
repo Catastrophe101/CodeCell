@@ -31,9 +31,13 @@ Route::get('/test', function () {
     return view('test');
 })->middleware('auth');
 
+Route::get('/admin_control', function () {
+    return view('Admin.addnotice');
+});
+
 Route::get('login/google', 'Auth\LoginController@redirectToProvider')->name('login');
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
 Route::get('/logout','Auth\LoginController@handleLogout')->name('logout');
 
 Route::post('store', 'UserController@store');
-
+Route::post('store_notices','NoticesController@store_notices');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 
 class UserController extends Controller
@@ -69,6 +70,7 @@ class UserController extends Controller
             $user->email = $request->email;
 
             $user->save();
+            Session::put('role','user');
         }
         else{
             /*DB::table('users')
@@ -79,7 +81,11 @@ class UserController extends Controller
             DB::statement('UPDATE `users` 
                           SET `updated_at`=CURRENT_TIMESTAMP 
                           WHERE `id`= '.$request->id);
-            return 'Something';
+            $role=DB::table('users')
+                        ->where('id',$request->id)
+                        ->value('role');
+            Session::put('role',$role);
+            return;
         }
     }
 

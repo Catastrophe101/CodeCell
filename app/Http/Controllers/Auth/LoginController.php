@@ -1,13 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-use App\User;
-use Illuminate\Auth\SessionGuard;
-use Illuminate\Database\ConnectionResolverInterface;
-use Illuminate\Session\Middleware\StartSession;
-use Illuminate\Session\SessionManager;
+
 use Illuminate\Support\Facades\Session;
-use Illuminate\Validation\DatabasePresenceVerifier;
+
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
 //use App\UserController;
@@ -87,7 +83,7 @@ class LoginController extends Controller
 
     public function handleLogout(){
 
-        if(Session::get('name')){
+        if(Session::has('token')){
             //Socialite::driver('google');
             Session::flush();
             return view('home');

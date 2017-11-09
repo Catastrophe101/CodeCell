@@ -14,6 +14,9 @@
             {{\Illuminate\Support\Facades\Session::get('name')}}<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="/profile">Profile</a></li>
+            @if(\Illuminate\Support\Facades\Session::get('role')=='admin')
+              <li><a href="/admin_control">Admin Control</a></li>
+            @endif
             <li role="separator" class="divider"></li>
             <li class="dropdown-header"></li>
             <li><a href="/logout">Logout</a></li>
