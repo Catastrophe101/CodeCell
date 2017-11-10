@@ -7,11 +7,14 @@
     <br>
 <p class ="lead">Here you will find details of all the on going coding events</p>
 </div >
-<div class ="well">
-  <p class="jumbotron"><a href="https://www.hackerrank.com/contests/morgan-stanley-2016/">Upcoming codeathon by Morgan stanley </a></p>
-</div>
-<div class ="well">
-  <p class="jumbotron"><a href="https://www.codechef.com/AUG17">Code chef long challege is going on!</a></p>
-</div>
+
+@foreach(\Illuminate\Support\Facades\DB::table('notices')->get() as $notice)
+    <div class ="well">
+      <p class="jumbotron"><a href="{{ $notice->link }}">{{ $notice->title }}</a>
+      <p>Platform: {{ $notice->title }}<br>Startdate: {{ $notice->start_date }}</p>
+      </p>
+    </div>
+@endforeach
+
 </div>
 @endsection
